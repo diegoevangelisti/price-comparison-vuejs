@@ -1,0 +1,8 @@
+body{
+    background: lightgray;
+    margin: 20px;
+}
+input {
+    margin-top: 20px;
+    max-width: 50%;
+}
