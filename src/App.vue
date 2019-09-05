@@ -1,25 +1,32 @@
 <template>
-
-    <div class="container">
-        <div class="row">
+    <div class="container-fluid">
+        <div class="row w3-opacity"
+            style="background: black; padding: 30px 0px 30px 0px; color: white; font-weight: 10; font-size: 16px; font-family: 'Dosis'">
+            <div class="col-xs-3">
+                <p style="text-align: center">Price Comparison</p>
+            </div>
+            <div class="col-xs-6">
+                <p style="text-align: center">Search products from Countdown and New World</p>
+            </div>
+            <div class="col-xs-3">
+                <p style="text-align: center">More Info</p>
+            </div>
+        </div>
+        <div class="row" style="margin: 30px 0px 0px 0px">
             <div class="col-12">
-                <h2 style="display: block; margin: auto; text-align: center">Price comparison</h2>
-                <h3 style="display: block; margin: auto; text-align: center">Countdown - New World</h3>
-                <button id="button" class="btn btn-primary" v-on:click="seen = true" @click="fetchData()">Get
-                    data</button>
-                <button class="btn btn-primary" v-on:click="seen = !seen">Show/hide</button>
-                <input type="text" class="form-control mr-sm-2" v-model="search" placeholder="Search products">
+                <input class="form-control mr-sm-2" type="text" v-model="search" v-on:click="seen=true"
+                    @click="fetchData()" placeholder="Search products">
             </div>
         </div>
         <div class="row">
             <div class="col-xs-6">
                 <div v-if="seen">
-
                     <ul>
-                        <h1>Countdown</h1>
-                        <li class="list-group-item" v-for="(p, index) in filteredProductsCountdown" :key="index"
-                            v-bind:style="p.product_price.normal_price == minimal? {fontWeight: 700}:{fontWeight: 100}">
-                            {{index+1}} - {{ p.product_name}} - {{p.product_price.normal_price}} NZD
+                        <p class="countdown">Countdown (<span>{{filteredProductsCountdown.length}}</span>)</p>
+                        <li class="list-group-item" v-for="(p, index) in filteredProductsCountdown" :key="index">
+                            {{ p.product_name}} <span
+                                v-bind:style="{fontWeight: 700,fontSize: '14px',marginLeft: '8px'}">{{p.product_price.normal_price}}
+                                NZD</span>
                         </li>
                     </ul>
                 </div>
@@ -27,10 +34,11 @@
             <div class="col-xs-6">
                 <div v-if="seen">
                     <ul v-if="seen">
-                        <h1>New World</h1>
-                        <li class="list-group-item" v-for="(p, index) in filteredProductsNW" :key="index"
-                            v-bind:style="p.product_price.normal_price ?  { fontWeight: bold} : {fontWeight: bold}">
-                            {{index+1}} - {{ p.product_name}} - {{p.product_price.normal_price}} NZD
+                        <p class="nw">New World (<span>{{filteredProductsNW.length}}</span>)</p>
+                         <li class="list-group-item" v-for="(p, index) in filteredProductsNW" :key="index">
+                           {{ p.product_name}} <span
+                                v-bind:style="{fontWeight: 700,fontSize: '14px',marginLeft: '8px'}">{{p.product_price.normal_price}}
+                                NZD</span>
                         </li>
                     </ul>
                 </div>
@@ -39,10 +47,10 @@
     </div>
 </template>
 
-
 <script>
     var link = 'https://smart-shopping-application.herokuapp.com/products/json/countdown';
     var link1 = 'https://smart-shopping-application.herokuapp.com/products/json/nwm';
+    import backgroundUrl from './assets/img/banner.jpeg'
     export default {
         data() {
             return {
@@ -51,7 +59,8 @@
                 seen: false,
                 search: '',
                 prices: [],
-                word: ''
+                word: '',
+                backgroundUrl
             };
         },
         filters: {
@@ -97,22 +106,22 @@
                     return p.product_name.match(this.search);
                 })
             },
-            minPrice() {
-                return this.countdown[0].filter((p) => {
+            // minPrice() {
+            //     return this.countdown[0].filter((p) => {
 
-                    if (p.product_name.match(this.search) != this.word) {
-                        console.log(p.product_price.normal_price)
-                        console.log(this.word)
-                        this.minimal = p.product_price.normal_price;
-                        return p.product_name.match(this.search);
-                    }
-                    if (p.product_price.normal_price < this.minimal) {
-                        this.minimal = p.product_price.normal_price;
-                        this.word = p.product_name.match(this.search);
-                    }
-                    return p.product_name.match(this.search);
-                })
-            }
+            //         if (p.product_name.match(this.search) != this.word) {
+            //             console.log(p.product_price.normal_price)
+            //             console.log(this.word)
+            //             this.minimal = p.product_price.normal_price;
+            //             return p.product_name.match(this.search);
+            //         }
+            //         if (p.product_price.normal_price < this.minimal) {
+            //             this.minimal = p.product_price.normal_price;
+            //             this.word = p.product_name.match(this.search);
+            //         }
+            //         return p.product_name.match(this.search);
+            //     })
+            // }
         }
     }
 </script>
