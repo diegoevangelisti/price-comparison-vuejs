@@ -6,7 +6,7 @@
                 <p style="text-align: center">Price Comparison</p>
             </div>
             <div class="col-xs-6">
-                <p style="text-align: center">Search products from Countdown and New World</p>
+                <p style="text-align: center">Countdown and New World products</p>
             </div>
             <div class="col-xs-3">
                 <p style="text-align: center">More Info</p>
@@ -97,31 +97,14 @@
         computed: {
             filteredProductsCountdown() {
                 return this.countdown[0].filter((p) => {
-                    return p.product_name.match(this.search);
+                    return p.product_name.toLowerCase().match(this.search);
                 })
             },
             filteredProductsNW() {
-
                 return this.new_world[0].filter((p) => {
-                    return p.product_name.match(this.search);
+                    return p.product_name.toLowerCase().match(this.search);
                 })
             },
-            // minPrice() {
-            //     return this.countdown[0].filter((p) => {
-
-            //         if (p.product_name.match(this.search) != this.word) {
-            //             console.log(p.product_price.normal_price)
-            //             console.log(this.word)
-            //             this.minimal = p.product_price.normal_price;
-            //             return p.product_name.match(this.search);
-            //         }
-            //         if (p.product_price.normal_price < this.minimal) {
-            //             this.minimal = p.product_price.normal_price;
-            //             this.word = p.product_name.match(this.search);
-            //         }
-            //         return p.product_name.match(this.search);
-            //     })
-            // }
         }
     }
 </script>
