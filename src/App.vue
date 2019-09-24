@@ -1,20 +1,14 @@
 <template>
     <div class="container-fluid">
-        <div class="row w3-opacity"
-            style="background: black; padding: 30px 0px 30px 0px; color: white; font-weight: 10; font-size: 16px; font-family: 'Dosis'">
-            <div class="col-xs-3">
-                <p style="text-align: center">Price Comparison</p>
-            </div>
-            <div class="col-xs-6">
-                <p style="text-align: center">Countdown and New World products</p>
-            </div>
-            <div class="col-xs-3">
-                <p style="text-align: center">More Info</p>
+        <div class="row w3-opacity nav">
+            <div class="col-xs-12">
+                <p class="title">Countdown vs New World</p>
+            <p class="sub-title">Search the product you like and check the difference</p>
             </div>
         </div>
         <div class="row" style="margin: 30px 0px 0px 0px">
             <div class="col-12">
-                <input class="form-control mr-sm-2" type="text" v-model="search" v-on:click="seen=true"
+                <input class="form-control mr-sm-2 search" type="text" v-model="search" v-on:click="seen=true"
                     @click="fetchData()" placeholder="Search products">
             </div>
         </div>
@@ -35,8 +29,8 @@
                 <div v-if="seen">
                     <ul v-if="seen">
                         <p class="nw">New World (<span>{{filteredProductsNW.length}}</span>)</p>
-                         <li class="list-group-item" v-for="(p, index) in filteredProductsNW" :key="index">
-                           {{ p.product_name}} <span
+                        <li class="list-group-item" v-for="(p, index) in filteredProductsNW" :key="index">
+                            {{ p.product_name}} <span
                                 v-bind:style="{fontWeight: 700,fontSize: '14px',marginLeft: '8px'}">{{p.product_price.normal_price}}
                                 NZD</span>
                         </li>
