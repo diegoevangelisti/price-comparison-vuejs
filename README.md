@@ -1,5 +1,9 @@
 # Simple price comparison using Vue.js
 
+Start typing a product - Like: Banana - and see options available in New World and Countdown supermarkets
+Products' data come from a RESTful API allocated here: https://github.com/diegoevangelisti/countdown-nwm-scraping (if you want to take a look)
+Simple!
+
 # vue-cli
 
 > A Vue.js project
